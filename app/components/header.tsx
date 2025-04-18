@@ -1,9 +1,11 @@
-import { Box, Flex, Heading } from "@radix-ui/themes";
+import { Avatar, Box, Button, Flex, Heading } from "@radix-ui/themes";
 import Link from "next/link";
 import React from "react";
 import styles from "./header.module.css";
+import { signOut, withAuth } from "@workos-inc/authkit-nextjs";
 
-const Header = () => {
+const Header = async () => {
+  const { user } = await withAuth();
   return (
     <Box p="2" mb="3" className={styles.header}>
       <Flex>
@@ -12,7 +14,19 @@ const Header = () => {
             <Heading highContrast>Pokemon Deck Builder</Heading>
           </Link>
         </Box>
-        <Flex gap="2"></Flex>
+        {user && (
+          <Flex gap="2">
+            <Avatar
+              src={user?.profilePictureUrl ?? undefined}
+              fallback={user?.firstName ?? ""}
+              size="3"
+            />
+
+            <form action={async ()=>{"use server"; await signOut()}}>
+              <Button type="submit" size={"3"}>Sign Out</Button>
+            </form>
+          </Flex>
+        )}
       </Flex>
     </Box>
   );

@@ -88,8 +88,8 @@ You can use radix-ui variables that are linked with the theme itself like **--ac
 2. set env variables:
 
 ```bash
-WORKOS_API_KEY='sk_test_a2V5XzAxSlM0MVBDM05DUzY4VlZBN1kwOURQMUVILDV2QmxXWFJXOXlkdXY3alA2NWNOMXAyQ0w'
-WORKOS_CLIENT_ID='client_01JS41PCK7C8QPPXGJ2J9ZCF97'
+WORKOS_API_KEY=''
+WORKOS_CLIENT_ID=''
 WORKOS_COOKIE_PASSWORD="<your password>" # generate a secure password here
 
 # configured in the WorkOS dashboard
