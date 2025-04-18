@@ -82,3 +82,6 @@ export default function RootLayout({
 
 You can use radix-ui variables that are linked with the theme itself like **--accent-3**, **--space-5** and many more, to customize UI components and make them change according to theme.
 
+
+## Handle Auth with Authkit by Workos
+
