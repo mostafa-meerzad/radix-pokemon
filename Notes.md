@@ -52,4 +52,33 @@ export default function () {
   );
 }
 ```
+
 then copy the theme config and replace your `<Theme>` opening tag with that.
+
+## Layout Components with Radix-UI
+
+`Container`’s sole responsibility is to provide a consistent **max-width** to the content it wraps. Like Section, it comes just with a couple of pre-defined sizes that work well with common breakpoints and typical content widths for comfortable reading.
+
+```tsx
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <Theme radius="full" appearance="dark">
+          <Container>{children}</Container>
+          <ThemePanel />
+        </Theme>
+      </body>
+    </html>
+  );
+}
+```
+
+## Custom Styling
+
+You can use radix-ui variables that are linked with the theme itself like **--accent-3**, **--space-5** and many more, to customize UI components and make them change according to theme.
+

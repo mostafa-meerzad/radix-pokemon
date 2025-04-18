@@ -1,9 +1,14 @@
-import React from 'react'
+import { Heading } from "@radix-ui/themes";
+import React from "react";
+import Header from "./components/header";
 
 const HomePage = () => {
   return (
-    <div>HomePage</div>
-  )
-}
+    <main>
+      <Heading>Pokemon Deck Builder</Heading>
+      <Header />
+    </main>
+  );
+};
 
-export default HomePage
+export default HomePage;
