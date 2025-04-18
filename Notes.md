@@ -82,6 +82,56 @@ export default function RootLayout({
 
 You can use radix-ui variables that are linked with the theme itself like **--accent-3**, **--space-5** and many more, to customize UI components and make them change according to theme.
 
-
 ## Handle Auth with Authkit by Workos
 
+1. run `npm install @workos-inc/authkit-nextjs` command to install authkit-next
+2. set env variables:
+
+```bash
+WORKOS_API_KEY='sk_test_a2V5XzAxSlM0MVBDM05DUzY4VlZBN1kwOURQMUVILDV2QmxXWFJXOXlkdXY3alA2NWNOMXAyQ0w'
+WORKOS_CLIENT_ID='client_01JS41PCK7C8QPPXGJ2J9ZCF97'
+WORKOS_COOKIE_PASSWORD="<your password>" # generate a secure password here
+
+# configured in the WorkOS dashboard
+NEXT_PUBLIC_WORKOS_REDIRECT_URI="http://localhost:3000/callback"
+
+```
+
+3. Add AuthKit to your app: **Provider**:
+   The AuthKitProvider component adds protections for auth edge cases and is required to wrap your app layout.
+
+```tsx
+import { AuthKitProvider } from "@workos-inc/authkit-nextjs/components";
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body>
+        <AuthKitProvider>{children}</AuthKitProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+4. build the middleware:
+
+```tsx
+import { authkitMiddleware } from "@workos-inc/authkit-nextjs";
+
+export default authkitMiddleware({ debug: true });
+
+export const config = { matcher: ["/", "/deck/:path*"] };
+```
+
+5. build the `callback route` inside the **app** router **app/callback/route.ts**:
+
+```tsx
+import { handleAuth } from "@workos-inc/authkit-nextjs";
+
+// Redirect the user to `/` after successful sign in
+// The redirect can be customized: `handleAuth({ returnPathname: '/foo' })`
+export const GET = handleAuth();
+```
+
+### Access Authentication Data
