@@ -31,7 +31,7 @@ export default function RootLayout({
         <AuthKitProvider> 
           <Theme radius="full" appearance="dark">
             <Container>{children}</Container>
-            <ThemePanel />
+            {/* <ThemePanel /> */}
           </Theme>
         </AuthKitProvider>
       </body>
