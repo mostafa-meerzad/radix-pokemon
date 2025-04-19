@@ -3,9 +3,9 @@ DROP TABLE IF EXISTS decks;
 
 CREATE TABLE decks (
     id INTEGER PRIMARY KEY,
-    name TEXT
+    name TEXT,
     userId TEXT
-)
+);
 
 CREATE TABLE cards (
     id INTEGER PRIMARY KEY,
